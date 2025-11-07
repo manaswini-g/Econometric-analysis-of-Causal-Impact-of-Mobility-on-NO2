@@ -17,6 +17,7 @@ This project investigates the causal relationship between human mobility and urb
 
 To address this, this analysis employs a **Two-Stage Least Squares (2SLS) Instrumental Variable (IV)** model. We use the **Oxford COVID-19 Government Response Tracker (OxCGRT) Stringency Index** as an instrument for mobility.
 
+
 ### Methodology
 
 The 2SLS approach isolates the *causal* effect by:
@@ -26,6 +27,7 @@ The 2SLS approach isolates the *causal* effect by:
 
 This strategy relies on the assumption that national lockdown policies affect pollution *only* through their effect on human mobility, which is supported by the data and model diagnostics.
 
+
 ### Key Findings
 
 The model successfully identifies a causal link and demonstrates the importance of correcting for endogeneity.
@@ -33,6 +35,7 @@ The model successfully identifies a causal link and demonstrates the importance 
 * **Endogeneity Confirmed:** A **Hausman Test** strongly rejects the null hypothesis (p < 2.2e-16), confirming that mobility is an endogenous variable and a simple OLS model would produce biased and inconsistent results.
 * **Strong Instrument:** The first-stage regression shows that the **Stringency Index** is a strong and highly significant predictor of mobility (F-statistic = 2,073.65), validating its use as an instrument.
 * **Causal Effect:** The 2SLS model (Column 3) estimates a statistically significant causal coefficient of **0.092 (p < 0.01)**. This suggests that a 1-unit increase in the mobility index (i.e., people moving *more*) causally increases NO₂ concentration.
+
 
 #### Regression Results
 | | **(1) Naive OLS** | **(2) First Stage** | **(3) 2SLS** | **(4) 2SLS + Time FE** |
@@ -46,6 +49,7 @@ The model successfully identifies a causal link and demonstrates the importance 
 
 *Note: The 2SLS model with both state and week fixed effects (Column 4) becomes unstable and insignificant, likely due to high multicollinearity and reduced identifying variation, reinforcing the robustness of the primary 2SLS model (Column 3).*
 
+
 ### Key Visualizations
 
 **National Trends**
@@ -56,7 +60,8 @@ This chart shows the aggregated weekly trends for NO₂ and mobility, highlighti
 This plot clearly shows the strong negative correlation between the Lockdown Stringency Index and actual workplace mobility.
 ![First Stage: Stringency vs. Mobility](visualizations/Stringency%20vs%20Mobility%20(First%20Stage%20Relationship).png)
 
-### 📥 Data Setup
+
+###  Data Setup
 
 The datasets for this project are too large to be hosted on GitHub directly. Please download the three required files using the links below:
 
@@ -65,6 +70,7 @@ The datasets for this project are too large to be hosted on GitHub directly. Ple
 3.  **Stringency Data:** [Download `D3_data.csv`](https://drive.google.com/file/d/12JqBbp6WeAy3B25aNHeCO6HDtZNvmJRh/view?usp=sharing)
 
 **After downloading, please place all three `.csv` files inside the `/data` folder** (which is currently empty) in your local copy of this project. The R script is built to look for them there.
+
 
 ### How to Reproduce
 
@@ -83,6 +89,7 @@ The datasets for this project are too large to be hosted on GitHub directly. Ple
     source("code/mobility_no2_analysis.R")
     ```
     The script will load the data from the `/data` folder, perform all cleaning and aggregation, run the models, and generate the visualizations.
+
 
 ### Technologies Used
 
